@@ -12,7 +12,7 @@ default: test
 .PHONY: test
 test: clean
 	@if [ ! -d bin ]; then mkdir bin; fi
-	@$(CC) $(OPTFLAGS) $(WARNFLAGS) -I$(INC) test/*.c test/vendor/*.c src/*.c -o bin/test
+	@$(CC) $(OPTFLAGS) $(WARNFLAGS) $(CFLAGS) -I$(INC) test/*.c test/vendor/*.c src/*.c -o bin/test
 	@./bin/test
 
 .PHONY: clean
@@ -23,7 +23,7 @@ clean:
 .PHONY: memcheck
 memcheck: test/*.c src/*.c
 	@mkdir -p ./bin
-	@$(CC) $(ASANFLAGS) $(OPTFLAGS) $(WARNFLAGS) -I$(INC) test/*.c test/vendor/*.c src/*.c -o bin/memcheck $(LIBS)
+	@$(CC) $(ASANFLAGS) $(OPTFLAGS) $(WARNFLAGS) $(CFLAGS) -I$(INC) test/*.c test/vendor/*.c src/*.c -o bin/memcheck $(LIBS)
 	@./bin/memcheck
 	@echo "Memory check passed"
 
