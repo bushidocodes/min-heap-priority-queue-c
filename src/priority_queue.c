@@ -87,7 +87,7 @@ priority_queue_percolate_down(struct priority_queue *const self)
 
 	size_t parent_index     = 1;
 	size_t left_child_index = 2 * parent_index;
-	while (left_child_index >= 2 && left_child_index < self->first_free) {
+	while (left_child_index < self->first_free) {
 		size_t smallest_child_index = priority_queue_find_smallest_child(self, parent_index);
 		// Once the parent is equal to or less than its smallest child, break;
 		if (self->get_key(self->items[parent_index])
