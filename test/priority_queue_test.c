@@ -14,7 +14,8 @@ struct sandbox_request *
 sandbox_request_allocate(uint64_t absolute_deadline)
 {
 	struct sandbox_request *sandbox_request = malloc(sizeof(struct sandbox_request));
-	sandbox_request->absolute_deadline      = absolute_deadline;
+	if (sandbox_request == NULL) abort();
+	sandbox_request->absolute_deadline = absolute_deadline;
 	return sandbox_request;
 }
 
