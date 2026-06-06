@@ -175,6 +175,7 @@ priority_queue_enqueue(struct priority_queue *const self, void *value)
 {
 	assert(self != NULL);
 
+	if (value == NULL) return -1;
 	if (priority_queue_append(self, value) == -1) return -1;
 	if (self->first_free > 2) {
 		priority_queue_percolate_up(self);
