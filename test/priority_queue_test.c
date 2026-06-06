@@ -85,6 +85,13 @@ enqueue_first_call_should_set_index_1(void)
 }
 
 void
+enqueue_returns_neg1_on_null(void)
+{
+	TEST_ASSERT_EQUAL_INT(-1, priority_queue_enqueue(&pq, NULL));
+	TEST_ASSERT_EQUAL_UINT(0, priority_queue_length(&pq));
+}
+
+void
 enqueue_returns_neg1_on_full(void)
 {
 	struct sandbox_request *sandbox_one = sandbox_request_allocate(10);
@@ -294,6 +301,7 @@ main(void)
 	RUN_TEST(enqueue_first_call_should_set_min_key);
 	RUN_TEST(enqueue_should_increment_first_free_and_length);
 	RUN_TEST(enqueue_first_call_should_set_index_1);
+	RUN_TEST(enqueue_returns_neg1_on_null);
 	RUN_TEST(enqueue_returns_neg1_on_full);
 	RUN_TEST(dequeue_on_empty_returns_null);
 	RUN_TEST(dequeue_last_element_should_set_UINT64_MAX);
